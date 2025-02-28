@@ -1616,10 +1616,13 @@ section {
 
 .how-section .approach-features {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-lg);
     margin: var(--space-lg) 0;
     list-style: none;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .how-section .approach-features li {
@@ -1634,6 +1637,22 @@ section {
     border: 1px solid rgba(187, 222, 251, 0.3);
     position: relative;
     padding-left: calc(var(--space-md) + 1.5rem); /* Mehr Platz für das Häkchen */
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.feature-title {
+    display: block;
+    font-weight: 600;
+    color: var(--primary-blue);
+    margin-bottom: 0.5rem;
+    font-size: 1.15rem;
+}
+
+[data-theme="dark"] .feature-title {
+    color: var(--accent-green);
 }
 
 .how-section .approach-features li::before {
@@ -1643,6 +1662,7 @@ section {
     left: var(--space-md);
     font-weight: bold;
     font-size: 1.1rem;
+    top: var(--space-md);
 }
 
 .how-section .approach-features li:hover {
@@ -1650,6 +1670,13 @@ section {
     background: rgba(255, 255, 255, 0.8); /* Hellerer Hintergrund beim Hover */
     border-color: rgba(26, 79, 139, 0.3);
     box-shadow: var(--shadow-subtle);
+}
+
+/* Dark Mode Anpassung für die Karten */
+[data-theme="dark"] .how-section .approach-features li {
+    background: var(--light-green);
+    border: 1px solid var(--accent-green);
+    color: var(--text-primary);
 }
 
 .how-section .emphasis-text {
@@ -2101,6 +2128,10 @@ section {
 
     .how-section .approach-features {
         gap: var(--space-md);
+    }
+
+    .how-section .approach-features {
+        grid-template-columns: 1fr;
     }
 }
 
