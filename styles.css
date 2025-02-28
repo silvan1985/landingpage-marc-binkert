@@ -565,11 +565,14 @@ section {
 
 /* Bild im Über-mich-Bereich */
 .about-image-container {
-    max-width: 500px;
-    margin: 0 auto var(--space-lg);
+    max-width: 45%;
+    float: left;
+    margin: 0 var(--space-md) var(--space-md) 0;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1;
 }
 
 .about-image {
@@ -577,10 +580,51 @@ section {
     height: auto;
     display: block;
     transition: transform 0.5s ease;
+    opacity: 0.9;
 }
 
 .about-image:hover {
     transform: scale(1.02);
+    opacity: 1;
+}
+
+/* Anpassung des About-Bereichs für das neue Layout */
+.about-section .container {
+    overflow: hidden; /* Clearfix für floats */
+    position: relative;
+}
+
+.about-section .intro-text {
+    margin-left: 50%;
+    position: relative;
+    z-index: 2;
+}
+
+.about-section .specialties {
+    margin-left: 50%;
+    position: relative;
+    z-index: 2;
+}
+
+.about-section .about-content {
+    margin-left: 50%;
+    position: relative;
+    z-index: 2;
+}
+
+/* Responsive Anpassungen */
+@media (max-width: 768px) {
+    .about-image-container {
+        max-width: 100%;
+        float: none;
+        margin: 0 auto var(--space-md);
+    }
+    
+    .about-section .intro-text,
+    .about-section .specialties,
+    .about-section .about-content {
+        margin-left: 0;
+    }
 }
 
 /* About Section Updates */
