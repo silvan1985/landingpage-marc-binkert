@@ -18,6 +18,10 @@
     --medium-green: #0F3D29;
     --light-green: #164A33;
     --accent-green: #26A96C;
+    --darker-green: #071D13; /* Noch dunklerer Grünton für Kontraste */
+    --lightest-green: #1D5940; /* Hellerer Grünton für Highlights */
+    --dark-text-green: #E0E0E0; /* Heller Text für dunklen Hintergrund */
+    --light-text-green: #AAAAAA; /* Leicht abgedunkelter Text für dunklen Hintergrund */
     
     /* Theme Variablen */
     --bg-primary: var(--white);
@@ -49,12 +53,12 @@
 }
 
 [data-theme="dark"] {
-    --bg-primary: var(--dark-green);
-    --bg-secondary: var(--medium-green);
-    --text-primary: #E0E0E0;
-    --text-secondary: #CCCCCC;
+    --bg-primary: var(--darker-green);
+    --bg-secondary: var(--dark-green);
+    --text-primary: var(--dark-text-green);
+    --text-secondary: var(--light-text-green);
     --accent-color: var(--accent-green);
-    --header-bg: var(--dark-green);
+    --header-bg: var(--darker-green);
     --card-bg: var(--medium-green);
     --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
@@ -2273,7 +2277,9 @@ section {
 
 [data-theme="dark"] .about-section,
 [data-theme="dark"] .faq-section,
-[data-theme="dark"] .target-groups-section {
+[data-theme="dark"] .target-groups-section,
+[data-theme="dark"] .goals-section,
+[data-theme="dark"] .approach-section {
     background-color: var(--bg-secondary);
     color: var(--text-primary);
 }
@@ -2298,23 +2304,23 @@ section {
 }
 
 [data-theme="dark"] .hero-section {
-    background: linear-gradient(135deg, var(--dark-green) 0%, var(--medium-green) 100%);
+    background: linear-gradient(135deg, var(--darker-green) 0%, var(--dark-green) 100%);
 }
 
 [data-theme="dark"] .why-section {
-    background: var(--medium-green);
+    background: var(--dark-green);
 }
 
 [data-theme="dark"] .how-section {
-    background: var(--light-green);
+    background: var(--medium-green);
 }
 
 [data-theme="dark"] .what-section {
-    background: linear-gradient(180deg, var(--light-green) 0%, var(--medium-green) 100%);
+    background: linear-gradient(180deg, var(--medium-green) 0%, var(--dark-green) 100%);
 }
 
 [data-theme="dark"] .contact-section {
-    background: linear-gradient(135deg, var(--dark-green) 0%, var(--medium-green) 100%);
+    background: linear-gradient(135deg, var(--darker-green) 0%, var(--dark-green) 100%);
 }
 
 [data-theme="dark"] .emphasis-text {
@@ -2375,4 +2381,100 @@ section {
     [data-theme="dark"] .mobile-menu-toggle .bar {
         background-color: var(--text-primary);
     }
+}
+
+[data-theme="dark"] .how-section::after {
+    opacity: 0.1;
+    filter: saturate(0.5) brightness(0.5);
+}
+
+[data-theme="dark"] .how-section::before {
+    background: linear-gradient(to bottom, var(--darker-green) 0%, rgba(0,0,0,0) 100%);
+}
+
+[data-theme="dark"] .expertise-section {
+    background: var(--medium-green);
+}
+
+[data-theme="dark"] .expertise-section::before {
+    background: linear-gradient(to bottom, var(--darker-green) 0%, rgba(0,0,0,0) 100%);
+}
+
+[data-theme="dark"] .approach-section::before {
+    background: linear-gradient(to bottom, var(--darker-green) 0%, rgba(0,0,0,0) 100%);
+}
+
+[data-theme="dark"] .goals-list li::before {
+    color: var(--accent-green);
+}
+
+[data-theme="dark"] .approach-features li::before {
+    color: var(--accent-green);
+}
+
+[data-theme="dark"] .profile-image-container {
+    border: 3px solid var(--accent-green);
+}
+
+[data-theme="dark"] .profile-image {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    border: 3px solid var(--accent-green);
+}
+
+[data-theme="dark"] .about-image {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    border: 3px solid var(--accent-green);
+}
+
+[data-theme="dark"] .goals-intro {
+    color: var(--accent-green);
+}
+
+[data-theme="dark"] .why-note {
+    color: var(--accent-green);
+}
+
+[data-theme="dark"] .approach-note {
+    color: var(--accent-green);
+}
+
+[data-theme="dark"] .approach-features li {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .target-group-card p {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .target-group-card h3 {
+    color: var(--accent-green);
+}
+
+[data-theme="dark"] .expertise-card h3 {
+    color: var(--accent-green);
+}
+
+[data-theme="dark"] .service-card h3 {
+    color: var(--accent-green);
+}
+
+[data-theme="dark"] .service-card p {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .service-details li {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .hero-text {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .hero-content h1,
+[data-theme="dark"] .hero-content h2 {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .parallax-bg::before {
+    background: linear-gradient(to bottom, var(--darker-green) 0%, rgba(0,0,0,0) 100%);
 } 
