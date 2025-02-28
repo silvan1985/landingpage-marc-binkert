@@ -607,18 +607,69 @@ section {
     margin-left: 50%;
     position: relative;
     z-index: 2;
+    font-size: 1.25rem;
+    color: var(--primary-blue);
+    margin-bottom: var(--space-md);
+    font-weight: 500;
+    line-height: 1.6;
+    padding-right: var(--space-md);
 }
 
 .about-section .specialties {
     margin-left: 50%;
     position: relative;
     z-index: 2;
+    background-color: rgba(232, 241, 248, 0.7);
+    padding: var(--space-md) var(--space-lg) var(--space-md) var(--space-md);
+    border-radius: 8px;
+    margin-bottom: var(--space-lg);
+    border-left: 4px solid var(--primary-blue);
+}
+
+.about-section .specialties li {
+    margin-bottom: var(--space-sm);
+    padding-left: 1.8rem;
+    position: relative;
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+.about-section .specialties li::before {
+    content: "✓";
+    color: var(--primary-blue);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
 }
 
 .about-section .about-content {
     margin-left: 50%;
     position: relative;
     z-index: 2;
+    padding-right: var(--space-md);
+}
+
+.about-section .emphasis-text {
+    font-family: var(--font-secondary);
+    font-size: 1.4rem;
+    line-height: 1.5;
+    color: var(--primary-blue);
+    margin: var(--space-md) 0;
+    font-style: italic;
+    text-align: left;
+    position: relative;
+    padding-left: var(--space-md);
+    border-left: 3px solid var(--accent-blue);
+}
+
+.about-section .about-description {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--light-text);
+    margin-top: var(--space-md);
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: var(--space-md);
+    border-radius: 8px;
 }
 
 /* Responsive Anpassungen */
@@ -641,26 +692,17 @@ section {
     .about-section .specialties,
     .about-section .about-content {
         margin-left: 0;
+        padding-right: 0;
     }
-}
-
-/* About Section Updates */
-.about-content {
-    max-width: 800px;
-    margin: 2rem auto;
-}
-
-.intro-text {
-    font-size: 1.2rem;
-    margin-bottom: var(--space-md);
-    color: var(--primary-blue);
-}
-
-.about-description {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: var(--light-text);
-    margin-top: var(--space-lg);
+    
+    .about-section .emphasis-text {
+        font-size: 1.25rem;
+        padding-left: var(--space-sm);
+    }
+    
+    .about-section .specialties {
+        padding: var(--space-sm);
+    }
 }
 
 /* Goals Section */
