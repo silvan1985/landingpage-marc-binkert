@@ -174,7 +174,7 @@ section {
         rgba(44, 122, 195, 0.93)), 
         url('images/zurich-background.jpg');
     background-size: cover;
-    background-position: center 65%;
+    background-position: center bottom;
     background-repeat: no-repeat;
     background-attachment: fixed;
     min-height: 50vh;
