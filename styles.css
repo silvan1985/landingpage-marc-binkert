@@ -2054,3 +2054,215 @@ section {
 [data-theme="dark"] .expertise-card::before {
     background: linear-gradient(to bottom, rgba(38, 169, 108, 0.1), transparent);
 }
+
+/* Kontakt Trigger (Bubble) */
+.contact-trigger {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+    transition: transform 0.3s var(--transition-smooth);
+}
+
+.contact-trigger:hover {
+    transform: translateY(-5px);
+}
+
+.contact-trigger-button {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    border: none;
+    border-radius: 50px;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: var(--shadow-medium);
+    transition: all 0.3s ease;
+}
+
+.contact-trigger-button:hover {
+    background-color: var(--secondary-blue);
+    box-shadow: var(--shadow-strong);
+}
+
+.contact-trigger-icon {
+    font-size: 1.5rem;
+    margin-right: 8px;
+}
+
+.contact-trigger-text {
+    font-weight: 500;
+}
+
+/* Kontakt Popup */
+.contact-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.contact-popup.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.contact-popup-content {
+    background-color: var(--white);
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    padding: 30px;
+    position: relative;
+    box-shadow: var(--shadow-strong);
+    transform: translateY(20px);
+    transition: transform 0.4s var(--transition-smooth);
+}
+
+.contact-popup.active .contact-popup-content {
+    transform: translateY(0);
+}
+
+.contact-popup-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--light-text);
+    transition: color 0.3s ease;
+}
+
+.contact-popup-close:hover {
+    color: var(--dark-text);
+}
+
+.contact-popup h3 {
+    margin-top: 0;
+    color: var(--primary-blue);
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.contact-popup-intro {
+    margin-bottom: 20px;
+    color: var(--light-text);
+}
+
+.contact-form .form-group {
+    margin-bottom: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--primary-blue);
+    outline: none;
+}
+
+.contact-form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.contact-form .privacy-notice {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.contact-form .checkbox-container {
+    display: flex;
+    align-items: flex-start;
+    cursor: pointer;
+}
+
+.contact-form input[type="checkbox"] {
+    width: auto;
+    margin-right: 10px;
+    margin-top: 3px;
+}
+
+.contact-form .privacy-text {
+    font-size: 0.9rem;
+    color: var(--light-text);
+}
+
+.contact-form .submit-button {
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.contact-form .submit-button:hover {
+    background-color: var(--secondary-blue);
+}
+
+/* Dark Mode Anpassungen */
+[data-theme="dark"] .contact-trigger-button {
+    background-color: var(--accent-green);
+}
+
+[data-theme="dark"] .contact-trigger-button:hover {
+    background-color: var(--lightest-green);
+}
+
+[data-theme="dark"] .contact-popup h3 {
+    color: var(--accent-green);
+}
+
+[data-theme="dark"] .contact-popup-close:hover {
+    color: var(--white);
+}
+
+/* Responsive Anpassungen */
+@media (max-width: 768px) {
+    .contact-trigger {
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .contact-trigger-text {
+        display: none;
+    }
+    
+    .contact-trigger-button {
+        padding: 12px;
+    }
+    
+    .contact-trigger-icon {
+        margin-right: 0;
+    }
+    
+    .contact-popup-content {
+        padding: 20px;
+    }
+}
