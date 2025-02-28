@@ -433,7 +433,7 @@ section {
 }
 
 .benefits-list li::before {
-    content: "✓";
+    content: "•";
     color: var(--success-green);
     position: absolute;
     left: 0;
@@ -700,7 +700,7 @@ section {
 }
 
 .why-content .goals-list li::before {
-    content: "→";
+    content: "•";
     font-size: 1.2rem;
     top: 0.15rem;
 }
@@ -880,11 +880,9 @@ section {
 }
 
 .footer-ethics li::before {
-    content: '✓';
+    content: '•';
     position: absolute;
     left: 0;
-    color: var(--alpine-blue);
-    font-size: 1em;
 }
 
 .footer-links a {
@@ -1357,7 +1355,7 @@ section {
 }
 
 .about-section .specialties li::before {
-    content: "✓";
+    content: "•";
     color: var(--primary-blue);
     position: absolute;
     left: 0;
@@ -1507,11 +1505,13 @@ section {
 }
 
 .approach-features li::before {
-    content: "✓";
-    color: var(--success-green);
+    content: "•";
+    color: var(--primary-blue);
     position: absolute;
-    left: 0;
+    left: var(--space-md);
     font-weight: bold;
+    font-size: 1.1rem;
+    top: var(--space-md);
 }
 
 .welcome-note {
@@ -1656,7 +1656,7 @@ section {
 }
 
 .how-section .approach-features li::before {
-    content: "✓";
+    content: "•";
     color: var(--primary-blue);
     position: absolute;
     left: var(--space-md);
