@@ -183,23 +183,6 @@
                     <p class="about-description parallax-element" data-speed="0.01">
                         Nicht nur, weil wir durch sie Zugang zu Ihren Verhaltens- und Denkmustern erhalten können, sondern weil sie die Grundlage für eine offene Kommunikation und damit für positive Veränderung bildet. Meistens muss man nämlich erst mal frei erzählen können, oder "es einfach mal rauslassen". Dafür schaffen wir Raum.
                     </p>
-                    
-                    <!-- Interaktive Stimmungsvisualisierung -->
-                    <div class="mood-visualization">
-                        <h3>Wie fühlen Sie sich heute?</h3>
-                        <div class="mood-slider-container">
-                            <input type="range" min="1" max="10" value="5" class="mood-slider" id="moodSlider">
-                            <div class="mood-labels">
-                                <span>Belastet</span>
-                                <span>Neutral</span>
-                                <span>Positiv</span>
-                            </div>
-                        </div>
-                        <div class="mood-canvas-container">
-                            <canvas id="moodCanvas" width="300" height="150"></canvas>
-                        </div>
-                        <p class="mood-description">Stimmungen sind veränderbar. In der Therapie arbeiten wir gemeinsam daran, Ihre emotionale Resilienz zu stärken.</p>
-                    </div>
                 </div>
             </div>
         </section>
@@ -207,6 +190,24 @@
         <section id="goals" class="goals-section">
             <div class="container">
                 <h2>Ihre Ziele</h2>
+                
+                <!-- Interaktive Stimmungsvisualisierung -->
+                <div class="mood-visualization">
+                    <h3>Wie fühlen Sie sich heute?</h3>
+                    <div class="mood-slider-container">
+                        <input type="range" min="1" max="10" value="5" class="mood-slider" id="moodSlider">
+                        <div class="mood-labels">
+                            <span>Belastet</span>
+                            <span>Neutral</span>
+                            <span>Positiv</span>
+                        </div>
+                    </div>
+                    <div class="mood-canvas-container">
+                        <canvas id="moodCanvas" width="300" height="150"></canvas>
+                    </div>
+                    <p class="mood-description">Stimmungen sind veränderbar. In der Therapie arbeiten wir gemeinsam daran, Ihre emotionale Resilienz zu stärken.</p>
+                </div>
+                
                 <p class="goals-intro">Sie möchten...</p>
                 <ul class="goals-list">
                     <li>mehr Selbstvertrauen, «Nein-Sagen» und Grenzen setzen?</li>
