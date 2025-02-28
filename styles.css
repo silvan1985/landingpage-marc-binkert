@@ -656,7 +656,6 @@ section {
     padding: var(--space-md) var(--space-lg) var(--space-md) var(--space-md);
     border-radius: 8px;
     margin-bottom: var(--space-lg);
-    border-left: 4px solid var(--primary-blue);
 }
 
 .about-section .specialties li {
@@ -711,14 +710,25 @@ section {
         max-width: 100%;
         float: none;
         margin: 0 auto var(--space-md);
-        height: 300px;
+        height: auto;
         position: relative;
         top: 0;
+        left: 0;
+        bottom: auto;
+    }
+    
+    .about-image {
+        position: relative;
+        height: auto;
+        max-height: 450px;
+        width: 100%;
+        object-fit: contain;
     }
     
     .about-section .container {
         min-height: auto;
         overflow: hidden;
+        padding-top: var(--space-md);
     }
     
     .about-section .intro-text,
@@ -734,7 +744,8 @@ section {
     }
     
     .about-section .specialties {
-        padding: var(--space-sm);
+        padding: var(--space-md);
+        background-color: rgba(232, 241, 248, 0.9);
     }
 }
 
