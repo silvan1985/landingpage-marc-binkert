@@ -567,20 +567,27 @@ section {
 .about-image-container {
     max-width: 45%;
     float: left;
-    margin: 0 var(--space-md) var(--space-md) 0;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin: 0 var(--space-md) 0 0;
     position: relative;
     z-index: 1;
+    overflow: hidden;
+    border-radius: 0;
+    box-shadow: none;
+    height: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    top: 80px; /* Platz für die Überschrift lassen */
 }
 
 .about-image {
     width: 100%;
-    height: auto;
+    height: 100%;
     display: block;
     transition: transform 0.5s ease;
     opacity: 0.9;
+    object-fit: cover;
+    object-position: center bottom;
 }
 
 .about-image:hover {
@@ -590,8 +597,10 @@ section {
 
 /* Anpassung des About-Bereichs für das neue Layout */
 .about-section .container {
-    overflow: hidden; /* Clearfix für floats */
+    overflow: visible; /* Damit das absolute positionierte Bild sichtbar bleibt */
     position: relative;
+    min-height: 600px; /* Erhöhte Mindesthöhe für den Container */
+    padding-bottom: var(--space-xl);
 }
 
 .about-section .intro-text {
@@ -618,6 +627,14 @@ section {
         max-width: 100%;
         float: none;
         margin: 0 auto var(--space-md);
+        height: 300px;
+        position: relative;
+        top: 0;
+    }
+    
+    .about-section .container {
+        min-height: auto;
+        overflow: hidden;
     }
     
     .about-section .intro-text,
