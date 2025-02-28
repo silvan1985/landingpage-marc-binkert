@@ -448,6 +448,47 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Accordion Funktionalität für FAQ-Bereich
+    function initAccordion() {
+        try {
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            
+            if (!accordionHeaders.length) {
+                console.warn('Keine Accordion-Elemente gefunden, Funktionalität wird übersprungen.');
+                return;
+            }
+            
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    // Toggle active class für Header
+                    this.classList.toggle('active');
+                    
+                    // Finde zugehörigen Content
+                    const content = this.nextElementSibling;
+                    if (!content || !content.classList.contains('accordion-content')) {
+                        console.warn('Accordion-Content nicht gefunden');
+                        return;
+                    }
+                    
+                    // Toggle active class für Content
+                    content.classList.toggle('active');
+                    
+                    // ARIA-Attribute für Barrierefreiheit aktualisieren
+                    const isExpanded = content.classList.contains('active');
+                    this.setAttribute('aria-expanded', isExpanded);
+                    content.setAttribute('aria-hidden', !isExpanded);
+                });
+            });
+            
+            // Optional: Erstes Accordion-Element standardmäßig öffnen
+            // if (accordionHeaders.length > 0) {
+            //     accordionHeaders[0].click();
+            // }
+        } catch (error) {
+            console.error('Fehler bei Accordion-Funktionalität:', error);
+        }
+    }
+
     // Initialisiere alle Funktionen
     try {
         initThemeSwitcher();
@@ -458,6 +499,7 @@ document.addEventListener('DOMContentLoaded', () => {
         initScrollAnimations();
         initMoodVisualization();
         initParallaxEffects();
+        initAccordion();
         
         console.log('Alle JavaScript-Funktionen wurden erfolgreich initialisiert.');
     } catch (error) {
