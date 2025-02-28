@@ -1515,26 +1515,79 @@ section {
 .approach-features {
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
     margin: var(--space-lg) 0;
 }
 
 .approach-features li {
-    padding-left: 2rem;
+    background-color: var(--white);
+    padding: var(--space-md);
+    border-radius: 10px;
+    box-shadow: var(--shadow-subtle);
+    transition: all 0.3s ease;
     position: relative;
-    font-size: 1.1rem;
-    color: var(--light-text);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.approach-features li:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
 }
 
 .approach-features li::before {
-    content: "•";
+    content: none; /* Entfernt den Bullet-Punkt */
+}
+
+.feature-title {
+    display: block;
+    font-weight: 600;
     color: var(--primary-blue);
-    position: absolute;
-    left: var(--space-md);
-    font-weight: bold;
+    margin-bottom: var(--space-sm);
     font-size: 1.1rem;
-    top: var(--space-md);
+    position: relative;
+    padding-bottom: var(--space-xs);
+}
+
+.feature-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 2px;
+    background-color: var(--accent-blue);
+    border-radius: 2px;
+}
+
+/* Responsive Anpassungen für das 4er-Grid */
+@media (max-width: 992px) {
+    .approach-features {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .approach-features {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Dark Mode Anpassungen */
+[data-theme="dark"] .approach-features li {
+    background-color: var(--card-bg);
+}
+
+[data-theme="dark"] .feature-title {
+    color: var(--accent-green);
+}
+
+[data-theme="dark"] .feature-title::after {
+    background-color: var(--accent-green);
 }
 
 .welcome-note {
