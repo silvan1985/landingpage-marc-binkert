@@ -1374,6 +1374,7 @@ section {
     position: relative;
     font-size: 1.1rem;
     line-height: 1.5;
+    list-style-type: none; /* Entfernt die Standard-Listenzeichen */
 }
 
 .about-section .specialties li::before {
