@@ -8,6 +8,12 @@
     --white: #ffffff;
     --success-green: #4CAF50;
 
+    /* Neue Variablen für Parallax-Effekte */
+    --transition-smooth: cubic-bezier(0.23, 1, 0.32, 1);
+    --shadow-subtle: 0 10px 30px rgba(0,0,0,0.05);
+    --shadow-medium: 0 15px 35px rgba(0,0,0,0.08);
+    --shadow-strong: 0 20px 45px rgba(0,0,0,0.12);
+
     /* Vereinfachte Schriftarten */
     --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;
     --font-secondary: Georgia, 'Times New Roman', serif;
@@ -32,6 +38,7 @@ html {
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth; /* Sanftes Scrollen für die gesamte Seite */
 }
 
 body {
@@ -39,6 +46,7 @@ body {
     color: var(--dark-text);
     font-weight: 400;
     letter-spacing: 0;
+    overflow-x: hidden; /* Verhindert horizontales Scrollen bei Parallax-Effekten */
 }
 
 /* Typographie-Hierarchie */
@@ -62,6 +70,9 @@ h3 {
 /* Optimierte Sektionsabstände */
 section {
     padding: var(--space-xl) 0;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.5s var(--transition-smooth);
 }
 
 .container {
@@ -185,6 +196,9 @@ section {
     text-align: center;
     padding: var(--space-xl) var(--space-md);
     margin-top: 60px;
+    overflow: hidden;
+    will-change: background-position;
+    transition: background-position 0.1s ease-out;
 }
 
 .hero-content {
@@ -192,6 +206,8 @@ section {
     max-width: 800px;
     z-index: 2;
     padding: var(--space-lg) 0;
+    transition: transform 0.1s ease-out;
+    will-change: transform;
 }
 
 .hero-content h1 {
@@ -257,10 +273,20 @@ section {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
+/* Parallax-Elemente */
+.parallax-element {
+    transition: transform 0.5s var(--transition-smooth), opacity 0.5s var(--transition-smooth);
+    will-change: transform, opacity;
+    backface-visibility: hidden; /* Verhindert Flackern */
+    perspective: 1000px; /* Verbessert 3D-Rendering */
+}
+
 /* About Section */
 .about-section {
     padding: 5rem 0;
     background-color: var(--light-blue);
+    position: relative;
+    overflow: hidden; /* Wichtig für den Parallax-Effekt */
 }
 
 .emphasis-text {
@@ -354,6 +380,8 @@ section {
 .expertise-section {
     padding: 5rem 0;
     background-color: var(--light-blue);
+    position: relative;
+    overflow: hidden; /* Wichtig für den Parallax-Effekt */
 }
 
 .expertise-grid {
@@ -367,13 +395,16 @@ section {
     background: var(--white);
     padding: 2.5rem;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
+    box-shadow: var(--shadow-subtle);
+    transition: all 0.5s var(--transition-smooth), transform 0.5s var(--transition-smooth);
+    opacity: 0.5;
+    transform: translateY(30px);
+    will-change: transform, opacity;
 }
 
 .expertise-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: var(--shadow-medium);
 }
 
 .expertise-card h3 {
@@ -578,6 +609,7 @@ section {
     bottom: 0;
     left: 0;
     top: 80px; /* Platz für die Überschrift lassen */
+    will-change: transform; /* Performance-Optimierung */
 }
 
 .about-image {
@@ -588,6 +620,7 @@ section {
     opacity: 0.9;
     object-fit: cover;
     object-position: center bottom;
+    will-change: transform; /* Performance-Optimierung */
 }
 
 .about-image:hover {
@@ -1226,4 +1259,127 @@ section {
 .approach-features,
 .expertise-card ul {
     font-family: var(--font-primary);
+}
+
+/* Parallax-Hintergrund für bestimmte Sektionen */
+.parallax-bg {
+    position: relative;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    will-change: background-position;
+}
+
+/* Subtile Animation für Hover-Effekte */
+.service-card:hover,
+.expertise-card:hover,
+.target-group-card:hover {
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: var(--shadow-medium);
+}
+
+/* Responsive Anpassungen für Parallax */
+@media (max-width: 768px) {
+    .hero-section, .parallax-bg {
+        background-attachment: scroll;
+    }
+    
+    .parallax-element {
+        transform: none !important; /* Deaktiviert Parallax auf mobilen Geräten */
+    }
+    
+    .expertise-card {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Subtile Tiefeneffekte für Sektionen */
+section {
+    position: relative;
+    z-index: 1;
+    transition: transform 0.5s var(--transition-smooth);
+}
+
+/* Subtile Schatten für Tiefeneffekt */
+.hero-content, 
+.about-content, 
+.expertise-card, 
+.service-card {
+    transition: transform 0.5s var(--transition-smooth), box-shadow 0.5s var(--transition-smooth);
+}
+
+/* Subtiler Zoom-Effekt für Bilder */
+.profile-image-container:hover .profile-image,
+.about-image-container:hover .about-image,
+.card-image:hover img {
+    transform: scale(1.03);
+    transition: transform 0.7s var(--transition-smooth);
+}
+
+/* Subtile Bewegung für Hintergrundbilder */
+.parallax-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.02);
+    z-index: -1;
+    pointer-events: none;
+    transition: transform 0.3s var(--transition-smooth);
+}
+
+/* Verbesserte Hero-Sektion mit Tiefeneffekt */
+.hero-section {
+    position: relative;
+    background: linear-gradient(135deg, 
+        rgba(26, 79, 139, 0.97), 
+        rgba(44, 122, 195, 0.93)), 
+        url('images/zurich-background.jpg');
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    text-align: center;
+    padding: var(--space-xl) var(--space-md);
+    margin-top: 60px;
+    overflow: hidden;
+    will-change: background-position;
+    transition: background-position 0.1s ease-out;
+}
+
+/* Verbesserte Expertise-Karten mit gestaffeltem Erscheinen */
+.expertise-card {
+    background: var(--white);
+    padding: 2.5rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow-subtle);
+    transition: all 0.5s var(--transition-smooth), transform 0.5s var(--transition-smooth);
+    opacity: 0.5;
+    transform: translateY(30px);
+    will-change: transform, opacity;
+}
+
+/* Optimierte Responsive-Anpassungen */
+@media (max-width: 768px) {
+    .hero-section, .parallax-bg {
+        background-attachment: scroll;
+    }
+    
+    .parallax-element {
+        transform: none !important; /* Deaktiviert Parallax auf mobilen Geräten */
+    }
+    
+    .expertise-card {
+        opacity: 1;
+        transform: translateY(0);
+    }
 } 
