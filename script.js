@@ -4,6 +4,55 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Theme Switcher Funktionalität
+    const initThemeSwitcher = () => {
+        const toggleSwitch = document.querySelector('#checkbox');
+        const currentTheme = localStorage.getItem('theme');
+        
+        if (!toggleSwitch) {
+            console.warn('Theme-Switch-Element nicht gefunden, Funktionalität wird übersprungen.');
+            return;
+        }
+        
+        // Prüfen, ob ein Theme gespeichert ist
+        if (currentTheme) {
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            
+            if (currentTheme === 'dark') {
+                toggleSwitch.checked = true;
+            }
+        }
+        
+        // Theme wechseln, wenn der Switch geklickt wird
+        function switchTheme(e) {
+            if (e.target.checked) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                
+                // Sanfte Übergangsanimation
+                document.body.classList.add('theme-transition');
+                setTimeout(() => {
+                    document.body.classList.remove('theme-transition');
+                }, 1000);
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                
+                // Sanfte Übergangsanimation
+                document.body.classList.add('theme-transition');
+                setTimeout(() => {
+                    document.body.classList.remove('theme-transition');
+                }, 1000);
+            }    
+        }
+        
+        // Event Listener für den Switch
+        toggleSwitch.addEventListener('change', switchTheme, false);
+        
+        // Füge eine Klasse für die Übergangsanimation hinzu
+        document.body.classList.add('theme-ready');
+    };
+
     // Hilfsfunktion zum sicheren Abrufen von DOM-Elementen
     const safeGetElement = (selector, parent = document) => {
         try {
@@ -227,6 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialisiere alle Funktionen
     try {
+        initThemeSwitcher();
         initContactPopup();
         initMobileMenu();
         initSmoothScroll();
