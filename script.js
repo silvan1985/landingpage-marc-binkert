@@ -274,6 +274,180 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('scroll', handleScroll);
     };
 
+    // Scroll-Animationen für Therapiebereiche
+    function initScrollAnimations() {
+        try {
+            const sections = document.querySelectorAll('.expertise-card, .service-card, .accordion-item');
+            
+            if (!sections.length) return;
+            
+            // Füge Klasse für CSS-Transition hinzu
+            sections.forEach(section => {
+                section.classList.add('fade-in-section');
+            });
+            
+            // Beobachter für Scroll-Events
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        // Optional: Beobachtung beenden, wenn Element sichtbar wurde
+                        // observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 }); // Element wird sichtbar, wenn 15% im Viewport sind
+            
+            // Beobachte alle Elemente
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        } catch (error) {
+            console.error('Fehler bei Scroll-Animationen:', error);
+        }
+    }
+
+    // Stimmungsvisualisierung
+    function initMoodVisualization() {
+        try {
+            const moodSlider = document.getElementById('moodSlider');
+            const moodCanvas = document.getElementById('moodCanvas');
+            
+            if (!moodSlider || !moodCanvas) return;
+            
+            const ctx = moodCanvas.getContext('2d');
+            let particles = [];
+            
+            // Erstelle Partikel
+            function createParticles(mood) {
+                particles = [];
+                const particleCount = 50;
+                
+                for (let i = 0; i < particleCount; i++) {
+                    // Farbe basierend auf Stimmung
+                    let color;
+                    if (mood < 4) {
+                        color = `rgba(231, 76, 60, ${Math.random() * 0.7 + 0.3})`; // Rot für negative Stimmung
+                    } else if (mood < 7) {
+                        color = `rgba(249, 212, 35, ${Math.random() * 0.7 + 0.3})`; // Gelb für neutrale Stimmung
+                    } else {
+                        color = `rgba(76, 175, 80, ${Math.random() * 0.7 + 0.3})`; // Grün für positive Stimmung
+                    }
+                    
+                    // Geschwindigkeit und Größe basierend auf Stimmung
+                    const speed = mood / 10 * 2;
+                    const size = Math.random() * (mood / 3) + 2;
+                    
+                    particles.push({
+                        x: Math.random() * moodCanvas.width,
+                        y: Math.random() * moodCanvas.height,
+                        radius: size,
+                        color: color,
+                        speedX: (Math.random() - 0.5) * speed,
+                        speedY: (Math.random() - 0.5) * speed,
+                        opacity: Math.random() * 0.7 + 0.3
+                    });
+                }
+            }
+            
+            // Animiere Partikel
+            function animateParticles() {
+                ctx.clearRect(0, 0, moodCanvas.width, moodCanvas.height);
+                
+                particles.forEach(particle => {
+                    ctx.beginPath();
+                    ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = particle.color;
+                    ctx.fill();
+                    
+                    // Bewege Partikel
+                    particle.x += particle.speedX;
+                    particle.y += particle.speedY;
+                    
+                    // Prüfe Grenzen
+                    if (particle.x < 0 || particle.x > moodCanvas.width) {
+                        particle.speedX = -particle.speedX;
+                    }
+                    if (particle.y < 0 || particle.y > moodCanvas.height) {
+                        particle.speedY = -particle.speedY;
+                    }
+                });
+                
+                requestAnimationFrame(animateParticles);
+            }
+            
+            // Initialisiere mit aktuellem Wert
+            createParticles(parseInt(moodSlider.value));
+            animateParticles();
+            
+            // Event-Listener für Slider
+            moodSlider.addEventListener('input', function() {
+                createParticles(parseInt(this.value));
+            });
+        } catch (error) {
+            console.error('Fehler bei Stimmungsvisualisierung:', error);
+        }
+    }
+
+    // Verbesserte Parallax-Effekte
+    function initParallaxEffects() {
+        try {
+            const parallaxSections = document.querySelectorAll('.parallax-bg');
+            const parallaxElements = document.querySelectorAll('.parallax-element');
+            
+            if (!parallaxSections.length && !parallaxElements.length) return;
+            
+            // Funktion für sanften Parallax-Effekt
+            function updateParallax() {
+                // Hintergrund-Parallax
+                parallaxSections.forEach(section => {
+                    const scrollPosition = window.pageYOffset;
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    
+                    // Prüfe, ob Sektion im Viewport ist
+                    if (scrollPosition + window.innerHeight > sectionTop && 
+                        scrollPosition < sectionTop + sectionHeight) {
+                        
+                        const yPos = (scrollPosition - sectionTop) * 0.4;
+                        section.style.backgroundPosition = `center ${yPos}px`;
+                    }
+                });
+                
+                // Element-Parallax
+                parallaxElements.forEach(element => {
+                    const scrollPosition = window.pageYOffset;
+                    const elementTop = element.getBoundingClientRect().top + scrollPosition;
+                    const elementHeight = element.offsetHeight;
+                    const windowHeight = window.innerHeight;
+                    
+                    // Prüfe, ob Element im Viewport ist
+                    if (scrollPosition + windowHeight > elementTop && 
+                        scrollPosition < elementTop + elementHeight) {
+                        
+                        const speed = element.getAttribute('data-speed') || 0.1;
+                        const yPos = (scrollPosition - elementTop) * speed;
+                        
+                        // Sanfte Transformation mit requestAnimationFrame
+                        requestAnimationFrame(() => {
+                            element.style.transform = `translateY(${yPos}px)`;
+                        });
+                    }
+                });
+            }
+            
+            // Initialer Aufruf
+            updateParallax();
+            
+            // Event-Listener für Scroll
+            window.addEventListener('scroll', debounce(updateParallax, 10));
+            
+            // Event-Listener für Resize
+            window.addEventListener('resize', debounce(updateParallax, 100));
+        } catch (error) {
+            console.error('Fehler bei Parallax-Effekten:', error);
+        }
+    }
+
     // Initialisiere alle Funktionen
     try {
         initThemeSwitcher();
@@ -281,6 +455,9 @@ document.addEventListener('DOMContentLoaded', () => {
         initMobileMenu();
         initSmoothScroll();
         initHeaderScrollEffect();
+        initScrollAnimations();
+        initMoodVisualization();
+        initParallaxEffects();
         
         console.log('Alle JavaScript-Funktionen wurden erfolgreich initialisiert.');
     } catch (error) {

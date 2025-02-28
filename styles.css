@@ -542,18 +542,40 @@ section {
     opacity: 0.5;
     transform: translateY(30px);
     will-change: transform, opacity;
+    position: relative;
+    overflow: hidden;
+}
+
+.expertise-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: linear-gradient(to bottom, rgba(26, 79, 139, 0.05), transparent);
+    transition: height 0.5s ease;
+    z-index: 0;
 }
 
 .expertise-card:hover {
-    transform: translateY(-5px) scale(1.01);
+    transform: translateY(-5px) scale(1.03);
     box-shadow: var(--shadow-medium);
+}
+
+.expertise-card:hover::before {
+    height: 100%;
+}
+
+.expertise-card h3, .expertise-card ul {
+    position: relative;
+    z-index: 1;
 }
 
 .expertise-card h3 {
     color: var(--primary-blue);
     margin-bottom: var(--space-lg);
     font-size: 1.5rem;
-    position: relative;
 }
 
 .expertise-card h3::after {
@@ -2248,6 +2270,39 @@ section {
     opacity: 0.5;
     transform: translateY(30px);
     will-change: transform, opacity;
+    position: relative;
+    overflow: hidden;
+}
+
+.expertise-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: linear-gradient(to bottom, rgba(26, 79, 139, 0.05), transparent);
+    transition: height 0.5s ease;
+    z-index: 0;
+}
+
+.expertise-card:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: var(--shadow-medium);
+}
+
+.expertise-card:hover::before {
+    height: 100%;
+}
+
+.expertise-card h3, .expertise-card ul {
+    position: relative;
+    z-index: 1;
+}
+
+/* Dark Mode Anpassung */
+[data-theme="dark"] .expertise-card::before {
+    background: linear-gradient(to bottom, rgba(38, 169, 108, 0.1), transparent);
 }
 
 /* Optimierte Responsive-Anpassungen */
@@ -2508,4 +2563,185 @@ section {
 
 [data-theme="dark"] .parallax-bg::before {
     background: linear-gradient(to bottom, var(--darker-green) 0%, rgba(0,0,0,0) 100%);
-} 
+}
+
+/* Scroll-Animationen für Therapiebereiche */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    will-change: opacity, transform;
+}
+
+.fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Verzögerung für gestaffelte Animation */
+.expertise-card:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.expertise-card:nth-child(3) {
+    transition-delay: 0.4s;
+}
+
+.expertise-card:nth-child(4) {
+    transition-delay: 0.6s;
+}
+
+/* Welleneffekt für Hero-Bereich */
+.wave-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.wave {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 80px;
+}
+
+.wave path {
+    animation: wave-animation 25s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+    fill: var(--bg-primary);
+}
+
+@keyframes wave-animation {
+    0% {
+        d: path("M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z");
+    }
+    50% {
+        d: path("M0,160L48,181.3C96,203,192,245,288,261.3C384,277,480,267,576,240C672,213,768,171,864,165.3C960,160,1056,192,1152,197.3C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z");
+    }
+    100% {
+        d: path("M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z");
+    }
+}
+
+/* Dark Mode Anpassung für Wellen */
+[data-theme="dark"] .wave path {
+    fill: var(--bg-primary);
+}
+
+/* Stimmungsvisualisierung */
+.mood-visualization {
+    margin-top: var(--space-xl);
+    padding: var(--space-lg);
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+    box-shadow: var(--shadow-subtle);
+    transition: all 0.3s ease;
+}
+
+.mood-visualization:hover {
+    box-shadow: var(--shadow-medium);
+}
+
+.mood-visualization h3 {
+    color: var(--primary-blue);
+    margin-bottom: var(--space-md);
+    text-align: center;
+}
+
+.mood-slider-container {
+    margin: var(--space-md) 0;
+}
+
+.mood-slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 10px;
+    border-radius: 5px;
+    background: linear-gradient(to right, #e74c3c, #f9d423, #4CAF50);
+    outline: none;
+    margin-bottom: var(--space-sm);
+}
+
+.mood-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: var(--primary-blue);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.mood-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(26, 79, 139, 0.5);
+}
+
+.mood-slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: var(--primary-blue);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+}
+
+.mood-slider::-moz-range-thumb:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(26, 79, 139, 0.5);
+}
+
+.mood-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: var(--light-text);
+}
+
+.mood-canvas-container {
+    display: flex;
+    justify-content: center;
+    margin: var(--space-md) 0;
+}
+
+.mood-description {
+    text-align: center;
+    font-style: italic;
+    color: var(--light-text);
+    font-size: 0.95rem;
+}
+
+/* Dark Mode Anpassung */
+[data-theme="dark"] .mood-visualization {
+    background-color: var(--medium-green);
+}
+
+[data-theme="dark"] .mood-visualization h3 {
+    color: var(--accent-green);
+}
+
+[data-theme="dark"] .mood-slider::-webkit-slider-thumb {
+    background: var(--accent-green);
+}
+
+[data-theme="dark"] .mood-slider::-webkit-slider-thumb:hover {
+    box-shadow: 0 0 10px rgba(38, 169, 108, 0.5);
+}
+
+[data-theme="dark"] .mood-slider::-moz-range-thumb {
+    background: var(--accent-green);
+}
+
+[data-theme="dark"] .mood-slider::-moz-range-thumb:hover {
+    box-shadow: 0 0 10px rgba(38, 169, 108, 0.5);
+}
+
+/* Dark Mode Anpassung */
+[data-theme="dark"] .expertise-card::before {
+    background: linear-gradient(to bottom, rgba(38, 169, 108, 0.1), transparent);
+}
