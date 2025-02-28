@@ -1,0 +1,27 @@
+# robots.txt für marc-binkert.ch
+# Verhindert die Indexierung der gesamten Website durch Suchmaschinen
+
+User-agent: *
+Disallow: /
+
+# Spezifische Anweisungen für Google-Bot
+User-agent: Googlebot
+Disallow: /
+
+# Spezifische Anweisungen für Bing-Bot
+User-agent: Bingbot
+Disallow: /
+
+# Verhindern, dass Bilder indexiert werden
+User-agent: Googlebot-Image
+Disallow: /
+
+# Verhindern, dass Medieninhalte indexiert werden
+User-agent: Googlebot-Video
+Disallow: /
+
+# Verhindern, dass mobile Inhalte indexiert werden
+User-agent: Googlebot-Mobile
+Disallow: /
+
+# Sitemap nicht angeben, da die Seite nicht indexiert werden soll 
